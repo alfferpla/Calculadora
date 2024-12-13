@@ -1,4 +1,5 @@
-﻿using PropertyChanged;
+﻿using Dangl.Calculator;
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,9 @@ namespace Calculadora.MVVM.ViewModels
         });
         public ICommand CalculateCommand => new Command(() =>
         {
-
+            if(Formula.Length == 0) return;
+            var Calculation = Calculator.Calculate(Formula);
+            Result = Calculation.Result.ToString();
         });
     }
 }
